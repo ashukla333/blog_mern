@@ -84,9 +84,6 @@ const Header = () => {
         <Button variant="text" className="uppercase text-sm font-bold">
           <FaInstagram className="text-lg" />
         </Button>
-        <Button variant="text" className="uppercase text-sm font-bold">
-          Blogloving
-        </Button>
            {/* Profile Icon with Click Dropdown */}
       <div className="relative">
         <IconButton
@@ -151,7 +148,6 @@ const Header = () => {
             <ListItem className="text-lg font-bold">
               <FaInstagram className="mr-3" /> Instagram
             </ListItem>
-            <ListItem className="text-lg font-bold">Blogloving</ListItem>
           </List>
         </div>
       </Drawer>

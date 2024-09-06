@@ -3,10 +3,10 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     env: {
-      BASE_URL: process.env.BASE_URL || "https://localhost:3000",
+      BASE_URL: process.env.BASE_URL ,
     },
     images: {
-      domains: ["localhost:3000", "localhost"],
+      domains: ["localhost:3000", "localhost","blog-mern-nu-one.vercel.app"],
       unoptimized: true,
     }
   };
