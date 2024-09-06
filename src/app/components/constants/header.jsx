@@ -66,7 +66,7 @@ const Header = () => {
     <div
       className={`border-b px-10 ${bebasNeue.className} pb-2 pt-4 shadow-md top-0 left-0 w-full transition-all duration-300 z-50 ${
         isSticky ? "sticky  !text-white" : "bg-white text-black"
-      } flex justify-between items-center`}
+      } flex justify-between bg-white items-center`}
     >
       {/* Logo Section */}
       <div className="flex items-center gap-4">

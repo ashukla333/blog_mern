@@ -3,7 +3,7 @@ import "../../../app/globals.css";
 import Layout from "@/app/components/modules/Layout";
 
 const inter = Inter({ subsets: ["latin"] });
-export const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] }); // You can specify weights if needed
+export const lato = Lato({ subsets: ["latin"], weight: [ "900"] }); // You can specify weights if needed
 export const bebasNeue = Bebas_Neue({ subsets: ["latin"], weight: ["400"] }); // Bebas Neue only has 400 weight
 export const metadata = {
   title: "BlogPage",
