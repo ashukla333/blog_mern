@@ -48,8 +48,8 @@ export default function LatestPost() {
 
         {/* Right Section - Image */}
         <div className="lg:w-1/2">
-          <Card className="w-full sm:w-[600px] sm:h-[400px] rounded-none bg-black h-full">
-            <CardBody className="w-full sm:w-[600px] sm:h-[400px] rounded-none h-full">
+          <Card className="w-full sm:w-full sm:h-[400px] rounded-none bg-black h-full">
+            <CardBody className="w-full sm:w-full sm:h-[400px] rounded-none h-full">
               <Image
                 height={1000}
                 width={1000}

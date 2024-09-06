@@ -10,8 +10,8 @@ export default function LatestPostDown() {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
         {/* Left Section - Image */}
         <div className="lg:w-1/2">
-          <Card className="w-full sm:w-[600px] sm:h-[400px] rounded-none bg-black h-full">
-            <CardBody className="w-full sm:w-[600px] sm:h-[400px] rounded-none h-full">
+          <Card className="w-full sm:w-full sm:h-[400px] rounded-none bg-black h-full">
+            <CardBody className="w-full sm:w-full sm:h-[400px] rounded-none h-full">
               <Image
                 height={1000}
                 width={1000}

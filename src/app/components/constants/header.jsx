@@ -124,7 +124,7 @@ const Header = () => {
         {/* Profile Icon with Click Dropdown */}
         <div className="relative">
           <IconButton
-            className="text-black bg-white dark:text-white"
+            className="text-black bg-white rounded-full dark:text-white"
             onClick={togglePopover}
           >
             <FaUserCircle size={28} />
