@@ -117,7 +117,7 @@ const SignUp = () => {
       <MainLogo />
       <TextContent
         text={"Join Us Today! 🚀"}
-        className={"text-primary-text-color"}
+        className={"text-primary-text-color capitalize"}
       />
       <TextContent
         text={"Create your account and start your journey with us."}
@@ -156,6 +156,14 @@ const SignUp = () => {
           >
             Sign Up
           </Button>
+        </div>
+
+        <div className="flex justify-end py-2 items-center">
+        <TextContent
+        text={"Log in your account"}
+        onClick={()=>{router.push("/auth")}}
+        className={"text-primary-black-color underline font-sans cursor-pointer w-max text-sm"}
+      />
         </div>
       </form>
     </div>

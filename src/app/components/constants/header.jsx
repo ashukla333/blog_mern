@@ -8,21 +8,34 @@ import {
   Drawer,
   List,
   ListItem,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 } from "@material-tailwind/react";
 import MainLogo from "./Elements/MainLogo";
 import { Bebas_Neue } from "next/font/google";
-import { FaFacebookF, FaTwitter, FaInstagram, FaBars, FaUserCircle, FaTimes } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaBars,
+  FaUserCircle,
+  FaTimes,
+} from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // Load Bebas Neue font
 const bebasNeue = Bebas_Neue({ subsets: ["latin"], weight: ["400"] });
 
 const Header = () => {
-  const router=useRouter()
+  const router = useRouter();
   const [isSticky, setIsSticky] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openPopover, setOpenPopover] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
 
   // Handle sticky header on scroll
   useEffect(() => {
@@ -50,7 +63,16 @@ const Header = () => {
 
   useEffect(() => {
     getUserAPi();
-  }, []);
+
+    // Automatically open login modal after 5 seconds if user is not logged in
+    const timer = setTimeout(() => {
+      if (!isLoggedIn) {
+        setOpenLoginModal(true);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, [isLoggedIn]);
 
   // Handle opening and closing of mobile drawer
   const handleDrawer = () => setOpenDrawer(!openDrawer);
@@ -58,31 +80,34 @@ const Header = () => {
   // Toggle Popover for Profile icon
   const togglePopover = () => setOpenPopover(!openPopover);
 
-  // Handle login and logout logic (this is just a placeholder for now)
+  // Handle login and logout logic
   const handleLogin = () => {
-    setIsLoggedIn(true);
-    router.push('/auth')
+    router.push("/auth");
+    setOpenLoginModal(false);
   };
 
   const handleSignUp = () => {
-    router.push('/signup')
+    router.push("/signup");
+    setOpenLoginModal(false);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.clear()
+    localStorage.clear();
   };
 
   return (
     <div
-      className={`border-b px-10 ${bebasNeue.className} pb-2 pt-4 shadow-md top-0 left-0 w-full transition-all duration-300 z-50 ${
+      className={`border-b px-10 ${
+        bebasNeue.className
+      } pb-2 pt-4 shadow-md top-0 left-0 w-full transition-all duration-300 z-50 ${
         isSticky ? "sticky  !text-white" : "bg-white text-black"
       } flex justify-between bg-white items-center`}
     >
       {/* Logo Section */}
-      <div className="flex items-center gap-4">
+      <Link href={"/"} className="flex items-center gap-4">
         <MainLogo className="text-2xl text-black dark:text-white" />
-      </div>
+      </Link >
 
       {/* Desktop Social Icons */}
       <div className="hidden lg:flex items-center gap-6">
@@ -160,7 +185,10 @@ const Header = () => {
           {/* Close button for mobile drawer */}
           <div className="flex justify-between items-center mb-6">
             <MainLogo className="text-2xl" />
-            <IconButton onClick={handleDrawer} className="text-black bg-white dark:text-white">
+            <IconButton
+              onClick={handleDrawer}
+              className="text-black bg-white dark:text-white"
+            >
               <FaTimes size={24} />
             </IconButton>
           </div>
@@ -177,6 +205,50 @@ const Header = () => {
           </List>
         </div>
       </Drawer>
+
+      {/* Login Modal */}
+      <Dialog
+        open={openLoginModal}
+        handler={setOpenLoginModal}
+        size="sm"
+        className="bg-white dark:bg-gray-800 rounded-none shadow-lg"
+      >
+        <DialogHeader className="text-center text-xl font-bold text-gray-800 dark:text-white">
+          Login Required
+        </DialogHeader>
+        <DialogBody
+          divider
+          className="flex flex-col items-center justify-center"
+        >
+          <p className="text-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Welcome to our blog! As a valued visitor, we want to ensure you have
+            the best experience. By logging in, you all gain access to exclusive
+            content, personalized recommendations, and the ability to engage
+            with our vibrant community through comments, likes, and more.
+          </p>
+          <p className="text-center text-sm text-gray-600 dark:text-gray-300">
+            If you don’t have an account yet, feel free to sign up and become
+            part of our growing community. It only takes a moment, and it
+            unlocks all the features our blog has to offer. Join us today!
+          </p>
+        </DialogBody>
+        <DialogFooter className="flex justify-between">
+          <Button
+            variant="text"
+            className="text-primary-black-color border-2 rounded-none font-bold"
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
+          <Button
+            variant="text"
+            className="text-primary-black-color border-2 rounded-none font-bold"
+            onClick={handleSignUp}
+          >
+            Sign Up
+          </Button>
+        </DialogFooter>
+      </Dialog>
     </div>
   );
 };
